@@ -1,0 +1,16 @@
+meta {
+  name: get product list
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/product
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~offset: 123
+  ~limit: 222
+}

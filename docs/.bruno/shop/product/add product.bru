@@ -1,0 +1,17 @@
+meta {
+  name: add product
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/product
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "123"
+  }
+}

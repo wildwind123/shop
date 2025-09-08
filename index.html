@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>DaisyUI v5 Layout — Header / Body / Menu / Footer</title>
+
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="min-h-screen flex flex-col bg-base-200">
+
+    <!-- HEADER / NAVBAR -->
+    <header class="w-full bg-base-100 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="navbar">
+                <div class="flex-1">
+                    <a class="btn btn-ghost normal-case text-xl">MyBrand</a>
+                </div>
+                <div class="flex-none md:flex hidden">
+                    <ul class="menu menu-horizontal p-0">
+                        <li><a>Home</a></li>
+                        <li tabindex="0">
+                            <a>
+                                Services
+                                <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                    viewBox="0 0 24 24">
+                                    <path d="M7 10l5 5 5-5z" />
+                                </svg>
+                            </a>
+                            <ul class="p-2 bg-base-100">
+                                <li><a>Design</a></li>
+                                <li><a>Development</a></li>
+                            </ul>
+                        </li>
+                        <li><a>About</a></li>
+                        <li><a>Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <label for="drawer-toggle" class="btn btn-square btn-ghost">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- LAYOUT: drawer + main -->
+    <div class="flex-1 container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-[240px_1fr] gap-6">
+
+        <!-- SIDEBAR / MENU (drawer for mobile) -->
+        <input id="drawer-toggle" type="checkbox" class="hidden" />
+        <aside class="order-1 md:order-1">
+            <div class="card bg-base-100 shadow">
+                <div class="card-body p-4">
+                    <h3 class="font-bold text-lg">Menu</h3>
+                    <ul class="menu bg-base-100 w-full p-0 mt-2">
+                        <li><a class="justify-between">Dashboard <span class="badge">New</span></a></li>
+                        <li><a>Profile</a></li>
+                        <li><a>Settings</a></li>
+                        <li><a>Billing</a></li>
+                        <li><a class="text-error">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="order-2 md:order-2">
+            <section class="mb-6">
+                <div class="hero bg-base-100 rounded-lg shadow p-6">
+                    <div class="hero-content">
+                        <div>
+                            <h1 class="text-3xl font-bold">Welcome to the Dashboard</h1>
+                            <p class="py-2 text-base-content/80">A compact layout using DaisyUI v5 with Tailwind —
+                                header, menu sidebar, content area and footer.</p>
+                            <div class="mt-4">
+                                <button class="btn btn-primary mr-2">Get Started</button>
+                                <button class="btn btn-ghost">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Example cards -->
+                <div class="card bg-base-100 shadow">
+                    <div class="card-body">
+                        <h2 class="card-title">Card 1</h2>
+                        <p>Quick stats or small widget content.</p>
+                        <div class="card-actions justify-end">
+                            <button class="btn btn-xs">View</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow">
+                    <div class="card-body">
+                        <h2 class="card-title">Card 2</h2>
+                        <p>Another widget. Use these for metrics, lists, etc.</p>
+                        <div class="card-actions justify-end">
+                            <button class="btn btn-xs">Open</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow">
+                    <div class="card-body">
+                        <h2 class="card-title">Card 3</h2>
+                        <p>More content tiles, responsive grid.</p>
+                        <div class="card-actions justify-end">
+                            <button class="btn btn-xs">Details</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer footer-center p-6 bg-base-200 text-base-content rounded-t-lg">
+        <div class="container mx-auto">
+            <div class="grid grid-flow-col gap-4">
+                <a class="link link-hover">About</a>
+                <a class="link link-hover">Privacy</a>
+                <a class="link link-hover">Contact</a>
+            </div>
+            <div class="mt-4">
+                <p>© <span id="year"></span> MyBrand. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // small nicety: set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

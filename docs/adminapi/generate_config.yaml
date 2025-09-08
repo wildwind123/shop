@@ -1,0 +1,14 @@
+# sets parser options.
+parser:
+  allow_remote: true
+# sets generator options.
+generator:
+  features:
+    enable:
+      - 'paths/server'
+    disable:
+      # Disables paths server generation
+      - 'paths/client'
+      - 'ogen/otel'
+      - 'debug/example_tests'
+    disable_all: true

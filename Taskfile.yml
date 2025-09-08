@@ -1,0 +1,8 @@
+version: '3'
+
+tasks:
+  brugen:
+    dir: '{{.USER_WORKING_DIR}}'
+    cmds:
+      - rm -frd ./docs/.bruno/shop
+      - bru import openapi --source ./docs/adminapi/api.yaml --output ./docs/.bruno --collection-name "shop"

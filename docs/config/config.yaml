@@ -1,0 +1,5 @@
+server:
+  addr: :8085
+database:
+  source: root:root@(localhost:3306)/shop?parseTime=true&loc=Asia%2FYakutsk&multiStatements=true
+  migration_path: ../../docs/migration

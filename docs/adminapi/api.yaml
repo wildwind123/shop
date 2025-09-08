@@ -1,0 +1,139 @@
+openapi: 3.0.2
+info:
+  version: '1.0.0' # Your API version
+  title: shop
+tags:
+  - name: product
+paths:
+  /product:
+    x-ogen-operation-group: product
+    get:
+      summary: get product list
+      tags:
+        - product
+      parameters:
+        - $ref: "#/components/parameters/offsetParam"
+        - $ref: "#/components/parameters/limitParam"
+      responses:
+        200:
+          $ref : '#/components/responses/ResGetProduct'
+        400:
+          $ref: "#/components/responses/ResError"
+    post:
+      summary: add product
+      tags:
+        - product
+      description: Receive the exact message you've sent
+      requestBody:
+        $ref: '#/components/requestBodies/ProductCreate'
+      responses:
+        200:
+          $ref : '#/components/responses/ResponseId'
+        400:
+          $ref: "#/components/responses/ResError"
+components:
+  responses:
+    ResError:
+      description: error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    ResponseId:
+      description: ''
+      content:
+        application/json:
+          schema:
+            required:
+              - id
+            type: object
+            properties:
+              id:
+                type: integer
+    ResGetProduct:
+      description: ""
+      content:
+        application/json:
+          schema:
+            allOf:
+              - type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Product"
+              - $ref: "#/components/schemas/ItemsInfo"
+  requestBodies:
+    ProductCreate:
+      required: true
+      content:
+        application/json:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+  parameters:
+    offsetParam:
+      in: query
+      name: offset
+      required: false
+      schema:
+        default: 0
+        type: integer
+        minimum: 0
+      description: The number of items to skip before starting to collect the result set.
+    limitParam:
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 3000
+        default: 20
+      description: The numbers of items to return.
+
+  schemas:
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ItemsInfo:
+      type: object
+      required: [limit, offset, count, request_uri]
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        request_uri:
+          type: string
+    Product:
+      type: object
+      required: [id, name, description, created_at, updated_at]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
